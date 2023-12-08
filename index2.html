@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood Connect</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      display: flex;
+      padding: 0;
+      height: 100vh;
+      background-color: red;
+      background: url(https://www.shutterstock.com/image-vector/blood-donation-vector-illustration-red-600nw-737116375.jpg),url(https://media.istockphoto.com/id/1320162065/vector/blood-cells-red-erythrocytes.jpg?s=612x612&w=0&k=20&c=rX8kGwiOsHW-V-BOal3Cf6ADKdjx_U5snDdykya0jbs=);
+      background-repeat: no-repeat, no-repeat;
+      background-size: contain, 100% 100%;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    form{
+        position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+  animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: whitesmoke;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+    
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #error-message {
+      color: red;
+      animation: shake 0.5s ease-in-out;
+    }
+    h1 {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+        color: #a01f1f;
+        margin-bottom: 20px;
+    }
+    input {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #d0cece;
+        padding: 2px 5px;
+        color: #d0cece;
+    }
+    
+
+    @keyframes shake {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      20%, 60% {
+        transform: translateX(-10px);
+      }
+      40%, 80% {
+        transform: translateX(10px);
+      }
+    }
+  </style>
+  <script>
+    function validateAndSubmit() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+      var email = document.getElementById('email').value;
+      var phone = document.getElementById('phone').value;
+
+      // Simple validation: Check if username, password, email, and phone are not empty
+      if (username.trim() === '' || password.trim() === '' || email.trim() === '' || phone.trim() === '') {
+        document.getElementById('error-message').innerText = 'Please fill in all fields.';
+        return false; // Prevent form submission if validation fails
+      } else if (!/^[a-zA-Z0-9]+$/.test(username)) {
+        document.getElementById('error-message').innerText = 'Username can only contain letters and numbers.';
+        return false;
+      } else if (password=='') {
+        document.getElementById('error-message').innerText = 'Enter Password';
+        return false;
+      }   else if (!/^\S+@\S+\.\S+$/.test(email)) {
+        document.getElementById('error-message').innerText = 'Enter a valid email address.';
+        return false;
+      } else if (!/^\d{10}$/.test(phone)) {
+        document.getElementById('error-message').innerText = 'Enter a valid 10-digit phone number.';
+        return false;
+      } else {
+        // Clear error message if validation passes
+        document.getElementById('error-message').innerText = '';
+      }
+
+      // If validation passes, you can navigate to another page
+      window.location.href = 'about.html';
+      return false; // Prevent form submission (you can remove this line if you want the form to submit)
+    }
+  </script>
+</head>
+<body>
+  <form onsubmit="return validateAndSubmit()">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" name="phone" required>
+    <br>
+    <button type="submit">Login</button>
+    <div id="error-message"></div>
+  </form>
+</body>
+</html>
